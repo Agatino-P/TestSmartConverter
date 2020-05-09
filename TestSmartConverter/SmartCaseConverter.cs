@@ -4,11 +4,12 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace TestSmartConverter
 {
     public enum ConverterCase{None, Upper, Lower }
-    public class SmartCaseConverter : IValueConverter
+    public class SmartCaseConverter : MarkupExtension, IValueConverter
     {
         public ConverterCase ConverterCase { get; set; } = ConverterCase.None;
 
@@ -30,7 +31,12 @@ namespace TestSmartConverter
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return "-" + value.ToString() + "-";
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
         }
     }
 }

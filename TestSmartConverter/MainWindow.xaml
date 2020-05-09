@@ -4,12 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:TestSmartConverter"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="MainWindow" Width="800" Height="450" mc:Ignorable="d">
+        Title="CippaLippa" Width="800" Height="450" mc:Ignorable="d">
     <Window.Resources>
         <local:SmartCaseConverter x:Key="scConv" ConverterCase="Lower" />
     </Window.Resources>
+
     <StackPanel>
-        <TextBox x:Name="txt" Text="TRUE" />
-        <TextBlock Text="{Binding Path=Text, ElementName=txt, Converter={StaticResource scConv}}" />
+        <TextBox x:Name="txt" Text="Test" />
+        <TextBlock Margin="0,10,0,10" Text="{Binding Path=Text, ElementName=txt, Converter={StaticResource scConv}}" />
+        <TextBlock Text="{Binding Path=Text, ElementName=txt, Converter={local:SmartCaseConverter ConverterCase=Lower}}" />
+        <TextBlock Text="{Binding Path=Text, ElementName=txt, Converter={local:SmartCaseConverter ConverterCase=None}}" />
+        <TextBlock Text="{Binding Path=Text, ElementName=txt, Converter={local:SmartCaseConverter ConverterCase=Upper}}" />
+        <TextBox Margin="0,10,0,10" Text="{Binding Path=Text, ElementName=txt, Converter={local:SmartCaseConverter ConverterCase=Upper}}" />
+
     </StackPanel>
 </Window>

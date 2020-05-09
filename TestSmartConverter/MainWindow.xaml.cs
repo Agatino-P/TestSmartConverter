@@ -14,14 +14,27 @@ using System.Windows.Shapes;
 
 namespace TestSmartConverter
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+
+        public Dictionary<string,string> Labels
+    {
+        get { return (Dictionary<string,string>)GetValue(LabelsProperty); }
+        set { SetValue(LabelsProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for Labels.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty LabelsProperty =
+        DependencyProperty.Register("Labels", typeof(Dictionary<string,string>), typeof(MainWindow), new PropertyMetadata(null));
+
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
+            Labels = new Dictionary<string, string>();
+            Labels.Add("a","a*");
+            Labels.Add("b", "b*");
         }
     }
 }
